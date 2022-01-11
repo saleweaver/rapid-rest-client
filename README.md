@@ -1,6 +1,8 @@
 REST-CLIENT
 ===========
 
+![Tests](https://codebuild.eu-central-1.amazonaws.com/badges?uuid=eyJlbmNyeXB0ZWREYXRhIjoiRy81RXhCL21iaEJXaHRieUg3Ly9IOVNkZjIvNWI4MmdGNG5sb2phR1pWNUk1TS9Xb0V6c2srL2hOMitobjNYOURueXR0eXVqTmV2M09XbWg1TFhwTW13PSIsIml2UGFyYW1ldGVyU3BlYyI6Ijk4V2xzeWp2K29uU0RNNDMiLCJtYXRlcmlhbFNldFNlcmlhbCI6MX0%3D&branch=master)
+
 Setup a client in minutes
 
 ---
@@ -86,3 +88,19 @@ Please note:
 
 This is a work in progress and completely new. Contributions are very welcome. 
 
+---
+
+[![Quality gate](https://sonarcloud.io/api/project_badges/quality_gate?project=saleweaver_rapid_rest_client)](https://sonarcloud.io/summary/new_code?id=saleweaver_rapid_rest_client)
+
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=saleweaver_rapid_rest_client&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=saleweaver_rapid_rest_client)
+[![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=saleweaver_rapid_rest_client&metric=reliability_rating)](https://sonarcloud.io/summary/new_code?id=saleweaver_rapid_rest_client)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=saleweaver_rapid_rest_client&metric=coverage)](https://sonarcloud.io/summary/new_code?id=saleweaver_rapid_rest_client)
+
+
+[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=saleweaver_rapid_rest_client&metric=bugs)](https://sonarcloud.io/summary/new_code?id=saleweaver_rapid_rest_client)
+[![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=saleweaver_rapid_rest_client&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=saleweaver_rapid_rest_client)
+[![Technical Debt](https://sonarcloud.io/api/project_badges/measure?project=saleweaver_rapid_rest_client&metric=sqale_index)](https://sonarcloud.io/summary/new_code?id=saleweaver_rapid_rest_client)
+
+[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=saleweaver_rapid_rest_client&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=saleweaver_rapid_rest_client)
+[![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=saleweaver_rapid_rest_client&metric=ncloc)](https://sonarcloud.io/summary/new_code?id=saleweaver_rapid_rest_client)
+[![Duplicated Lines (%)](https://sonarcloud.io/api/project_badges/measure?project=saleweaver_rapid_rest_client&metric=duplicated_lines_density)](https://sonarcloud.io/summary/new_code?id=saleweaver_rapid_rest_client)
