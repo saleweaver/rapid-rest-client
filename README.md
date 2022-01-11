@@ -3,6 +3,16 @@ REST-CLIENT
 
 Setup a client in minutes
 
+---
+
+### Installation
+
+````bash
+pip install rapid-rest-client
+````
+
+### Usage
+
 ```python
 from rest_client.base import BaseUrlConfig, ApiConfiguration, RequestConfig, Client
 
