@@ -3,7 +3,7 @@ from setuptools import setup
 from rest_client.__version__ import __version__
 
 setup(
-    name='simple_client',
+    name='rapid_rest_client',
     install_requires=[
         'requests',
         'colorlog'
