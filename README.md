@@ -18,7 +18,7 @@ pip install rapid-rest-client
 ```python
 from rest_client.base import BaseUrlConfig, ApiConfiguration, RequestConfig, Client
 
-endpoint_config: BaseUrlConfig = BaseUrlConfig('https://reqres.in/api/')
+endpoint_config: BaseUrlConfig = BaseUrlConfig('https://reqres.in/api/', 'https://sandbox.reqres.in/api/')
 
 @ApiConfiguration(endpoints=[
     RequestConfig('users', 'list_users'),

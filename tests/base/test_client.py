@@ -3,7 +3,7 @@ from rest_client.base import Client
 from rest_client.base import BaseUrlConfig, RequestConfig, ApiConfiguration, DictApiConfiguration
 from rest_client.base import ApiException
 
-endpoint_config: BaseUrlConfig = BaseUrlConfig('https://reqres.in/api/')
+endpoint_config: BaseUrlConfig = BaseUrlConfig('https://reqres.in/api/', 'https://sandbox.reqres.in/api/')
 auth_endpoint_config: BaseUrlConfig = BaseUrlConfig('https://gorest.co.in/public/v1/')
 
 
