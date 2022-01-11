@@ -30,7 +30,7 @@ class ExampleClient(Client):
 
 ```
 
-This makes available these methods on `ExampleClient`
+This makes these methods available on `ExampleClient`
 
 - list_users
 - get_user 
