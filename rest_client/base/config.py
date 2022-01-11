@@ -1,8 +1,24 @@
 import json
 import pprint
+import re
 from dataclasses import dataclass, field
 
+import requests
 from requests.structures import CaseInsensitiveDict
+
+from .exceptions import ConfigurationException
+
+
+def make_query(p):
+    r = r'{.*}'
+    try:
+        return re.sub(r, '{}', p), p[p.index('{') + 1:p.index('}')], True
+    except ValueError:
+        return re.sub(r, '{}', p), None, False
+
+
+def sub(e):
+    return re.sub(r'([A-Z])', lambda match: r'_{}'.format(match.group(1).lower()), e[0].lower() + e[1:])
 
 
 @dataclass(frozen=True)
@@ -69,3 +85,39 @@ class DictApiConfiguration(ApiConfiguration):
 class JsonApiConfiguration(DictApiConfiguration):
     def __init__(self, endpoints: str, base_url_config: BaseUrlConfig):
         super(JsonApiConfiguration, self).__init__(json.loads(endpoints), base_url_config)
+
+
+class SwaggerApiConfiguration(ApiConfiguration):
+    def __init__(self,
+                 base_url_config: BaseUrlConfig,
+                 url: str = None,
+                 definition: dict = None):
+        if url is None and definition is None:
+            raise ConfigurationException('url or definition must be set')
+        if url is not None:
+            definition = requests.get(url).json()
+
+        operations = []
+        for k, v in definition.get('paths').items():
+            for method, val in v.items():
+                if method == 'parameters':
+                    continue
+                uri, param, has_query_params = make_query(k)
+                operation = {
+                    'uri': uri,
+                    'method': method.upper(),
+                    'has_query_params': has_query_params,
+                    'query_param': param,
+                    'params_or_data': 'params' if method == 'get' else 'data',
+                    'title': sub(val.get('operationId')),
+                    'description': val.get('description')
+                }
+                operations.append(operation)
+
+        endpoints = [RequestConfig(
+            path=e['uri'],
+            name=e['title'],
+            method=e.get('method', 'GET'),
+            options=e.get('options', {})
+        ) for e in operations]
+        super().__init__(endpoints, base_url_config)

@@ -15,6 +15,35 @@ pip install rapid-rest-client
 
 ### Usage
 
+There are multiple options to auto-create a client. Here's using a swagger definition:
+
+````python
+from rest_client.base import BaseUrlConfig, SwaggerApiConfiguration, Client
+
+petstore_endpoint_config: BaseUrlConfig = BaseUrlConfig('https://petstore.swagger.io/v2/')
+
+@SwaggerApiConfiguration(url='https://petstore.swagger.io/v2/swagger.json', base_url_config=petstore_endpoint_config)
+class SwaggerUrlConfiguredClient(Client):
+    pass
+
+swagger_url_configured_client = SwaggerUrlConfiguredClient()
+
+# Client now has all paths available, as defined in the json file at url
+
+r = swagger_url_configured_client.find_pets_by_status(status='pending')
+print(r)
+````
+
+You can also pass the swagger definition as a dict:
+
+````python
+
+@SwaggerApiConfiguration(definition={<swagger dict>}, base_url_config=petstore_endpoint_config)
+
+````
+
+Manually creating a client:
+
 ```python
 from rest_client.base import BaseUrlConfig, ApiConfiguration, RequestConfig, Client
 

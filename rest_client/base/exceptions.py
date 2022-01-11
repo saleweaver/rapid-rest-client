@@ -8,3 +8,7 @@ class ApiException(Exception):
         self.data = data or kwargs
         self.headers = headers
         self.status_code = status_code
+
+
+class ConfigurationException(Exception):
+    pass
