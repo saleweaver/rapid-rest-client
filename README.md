@@ -43,6 +43,18 @@ get_user_response = client.get_user(3)
 register_user_response = client.register_user(email="eve.holt@reqres.in", password="pistol")
 ```
 
+If you want to customize a method, you can simply add methods to a client. Use the `endpoint` decorator to do that:
+
+```python
+from rest_client.base import endpoint, Client
+
+class ExampleClient(Client):
+    @endpoint('users', 'list_users')
+    def list_users(self, **kwargs):
+        return self._request(kwargs)
+
+```
+
 You can also create the client from json, or a dict:
 
 ````python

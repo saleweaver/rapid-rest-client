@@ -1,4 +1,4 @@
-from rest_client.base import BearerTokenAuth
+from rest_client.base import BearerTokenAuth, endpoint
 from rest_client.base import Client
 from rest_client.base import BaseUrlConfig, RequestConfig, ApiConfiguration, DictApiConfiguration
 from rest_client.base import ApiException
@@ -8,12 +8,14 @@ auth_endpoint_config: BaseUrlConfig = BaseUrlConfig('https://gorest.co.in/public
 
 
 @ApiConfiguration(endpoints=[
-    RequestConfig('users', 'list_users'),
+    # RequestConfig('users', 'list_users'),
     RequestConfig('users/{}', 'get_user'),
     RequestConfig('register', 'register_user', 'POST')
 ], base_url_config=endpoint_config)
 class ExampleClient(Client):
-    pass
+    @endpoint('users', 'list_users')
+    def list_users(self, **kwargs):
+        return self._request(kwargs)
 
 
 no_auth_client = ExampleClient()

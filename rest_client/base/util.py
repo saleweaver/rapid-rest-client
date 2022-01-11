@@ -13,7 +13,7 @@ def endpoint(path: str, name: str = None, method: str = 'GET', options: dict = N
             kwargs.update({
                 'request_config': RequestConfig(
                     path=fill_query_params(path, *args),
-                    name=name,
+                    name=name or path,
                     method=method,
                     options=options)
             })
