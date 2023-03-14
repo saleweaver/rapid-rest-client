@@ -1,5 +1,7 @@
 import json
+import logging
 import os
+from json import JSONDecodeError
 from urllib.parse import urljoin
 from requests import request
 
@@ -11,7 +13,7 @@ from rest_client.base.variables import CONTENT_TYPE, ENV
 from rest_client.__version__ import __version__
 from rest_client.base.exceptions import ApiException
 
-log = logger_config(__name__)
+log = logger_config(__name__, logging.INFO)
 
 
 class NoEndpointsExceptions(Exception):
@@ -73,9 +75,14 @@ class Client:
 
         self._log_response(res)
 
+        try:
+            response = res.json()
+        except JSONDecodeError:
+            response = res.content
+
         if 200 <= res.status_code < 400:
-            return ApiResponse(res.json(), res.headers, res.status_code)
-        raise ApiException(res.json(), res.headers, res.status_code)
+            return ApiResponse(response, res.headers, res.status_code)
+        raise ApiException(response, res.headers, res.status_code)
 
     def _log_request(self, args, data, kwargs, request_config):
         log.debug('Requesting %s', (self._path(request_config.path)))
@@ -89,7 +96,6 @@ class Client:
         log.debug(res.request.headers)
         log.debug(res.status_code)
         log.debug(res.headers)
-        log.debug(res.json())
 
     def __getattr__(self, item):
         log.debug(f'Requesting endpoint: {item}')
