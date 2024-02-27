@@ -68,7 +68,7 @@ class Client:
             request_config.method,
             self._path(request_config.path),
             headers=kwargs.pop('headers', self.headers),
-            data=json.dumps(data) if request_config.method in ('POST', 'PUT', 'PATCH') and data else None,
+            data=data.get('payload') or json.dumps(data) if data and request_config.method in ('POST', 'PUT', 'PATCH') else None,
             params=data if request_config.method in ('GET', 'DELETE') else None,
             auth=self.auth
         )
