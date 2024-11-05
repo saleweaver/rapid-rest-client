@@ -2,8 +2,6 @@ from rest_client.base.config import RequestConfig
 
 
 def fill_query_params(query, *args):
-    print(query)
-    print(args)
     return query.format(*args)
 
 
